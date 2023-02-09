@@ -3,9 +3,14 @@ import createEmotionServer from '@emotion/server/create-instance'
 import Document, { Head, Html, Main, NextScript } from 'next/document'
 
 export default class MyDocument extends Document {
+  static async getInitialProps(context: any) {
+    const initialProps = await Document.getInitialProps(context);
+    return { ...initialProps };
+  }
+
   render() {
     return (
-      <Html lang='en'>
+      <Html lang={this.props.locale}>
         <Head>
           {/* PWA primary color */}
           <meta name='theme-color' content={theme.palette.primary.main} />
