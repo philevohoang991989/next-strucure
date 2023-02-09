@@ -31,6 +31,7 @@ export function InputField({
       margin='normal'
       name={name}
       value={value}
+      autoComplete='off'
       onChange={onChange}
       onBlur={onBlur}
       inputRef={ref}
