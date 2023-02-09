@@ -21,7 +21,7 @@ export function HeaderDesktop() {
   const router = useRouter();
 
   const changeLang = (lang: any) => {
-    router.push("/", "/", { locale: lang });
+    router.push("", "", { locale: lang });
   };
   const [listRouter, setListRouter] = useState<ItemMenu[]>();
 

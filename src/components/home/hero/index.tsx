@@ -31,15 +31,8 @@ export default function HeroSection(props: HeroSectionProps) {
               Download Resume
             </Button>
           </Box>
-          <Box
-            sx={{
-              minWidth: '240px',
-              boxShadow: '-5px 13px',
-              color: 'secondary.light',
-              borderRadius: '50%'
-            }}
-          >
-            <Image src={avatar} layout='responsive' alt='avatar' />
+          <Box>
+            <Image src={avatar} width={250} height={250} alt='avatar' />
           </Box>
         </Stack>
       </Container>

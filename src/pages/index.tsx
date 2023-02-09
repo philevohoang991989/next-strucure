@@ -1,11 +1,10 @@
 import HeroSection from "@/components/home/hero";
 import { MainLayout } from "@/components/layout";
-import { NextPageWithLayout } from "@/models";
-import {useTrans} from '../hooks'
 import { Box } from "@mui/material";
 import { Container } from "@mui/system";
 import { Inter } from "@next/font/google";
 import { useRouter } from "next/router";
+import { useTrans } from '../hooks';
 
 const inter = Inter({ subsets: ["latin"] });
 
