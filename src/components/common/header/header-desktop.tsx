@@ -2,22 +2,23 @@ import Logo from "@/assets/icons/logo.svg";
 import { useAuth } from "@/hooks";
 import { ItemMenu } from "@/models";
 import { Container, Stack } from "@mui/material";
-import ToggleButton from "@mui/material/ToggleButton";
 import Button from "@mui/material/Button";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
+import ToggleButton from "@mui/material/ToggleButton";
+import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import { Box } from "@mui/system";
 import clsx from "clsx";
-import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { ROUTE_LIST } from "./routes";
-import styles from './styles.module.scss'
+import styles from "./styles.module.scss";
 
 export function HeaderDesktop() {
   const { logout, profile } = useAuth();
+  const [language, setLanguage] = React.useState<string | null>("en");
   const router = useRouter();
 
   const changeLang = (lang: any) => {
@@ -28,6 +29,9 @@ export function HeaderDesktop() {
   useEffect(() => {
     setListRouter(ROUTE_LIST);
   }, []);
+  useEffect(() => {
+    router.locale && setLanguage(router.locale);
+  }, [router]);
 
   async function handleLogoutClick() {
     try {
@@ -42,13 +46,11 @@ export function HeaderDesktop() {
     router.push("/login");
   }
 
-  const [alignment, setAlignment] = React.useState<string | null>("en");
-
   const handleAlignment = (
     event: React.MouseEvent<HTMLElement>,
     newAlignment: string | null
   ) => {
-    setAlignment(newAlignment);
+    setLanguage(newAlignment);
   };
 
   return (
@@ -61,7 +63,13 @@ export function HeaderDesktop() {
           >
             <Image src={Logo} alt="logo" />
           </div>
-          <List sx={{ display: "flex", justifyContent: "flex-end" , alignItems:'center'}}>
+          <List
+            sx={{
+              display: "flex",
+              justifyContent: "flex-end",
+              alignItems: "center",
+            }}
+          >
             {listRouter &&
               listRouter.map((route: any) => (
                 <ListItem sx={{ ml: 2, fontWeight: "medium" }} key={route.path}>
@@ -84,17 +92,27 @@ export function HeaderDesktop() {
               </Button>
             )}
             <ToggleButtonGroup
-              value={alignment}
+              value={language}
               exclusive
               onChange={handleAlignment}
               aria-label="text alignment"
-              sx={{ ml: 2}}
+              sx={{ ml: 2 }}
               className={styles.customToggleButton}
             >
-              <ToggleButton value="en" onClick={() => changeLang('en')}  size="small" aria-label="left aligned">
+              <ToggleButton
+                value="en"
+                onClick={() => changeLang("en")}
+                size="small"
+                aria-label="left aligned"
+              >
                 <span>EN</span>
               </ToggleButton>
-              <ToggleButton value="vi" onClick={() => changeLang('vi')}  size="small" aria-label="centered">
+              <ToggleButton
+                value="vi"
+                onClick={() => changeLang("vi")}
+                size="small"
+                aria-label="centered"
+              >
                 <span>VI</span>
               </ToggleButton>
             </ToggleButtonGroup>
