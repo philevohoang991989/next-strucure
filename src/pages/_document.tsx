@@ -1,6 +1,6 @@
-import { createEmotionCache, theme } from '@/utils'
-import createEmotionServer from '@emotion/server/create-instance'
-import Document, { Head, Html, Main, NextScript } from 'next/document'
+import { createEmotionCache, theme } from '@/utils';
+import createEmotionServer from '@emotion/server/create-instance';
+import Document, { Head, Html, Main, NextScript } from 'next/document';
 
 export default class MyDocument extends Document {
   static async getInitialProps(context: any) {
@@ -17,10 +17,6 @@ export default class MyDocument extends Document {
           <link rel='shortcut icon' href='/favicon.ico' />
           <link
             href='https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap'
-            rel='stylesheet'
-          ></link>
-          <link
-            href='https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700&display=swap'
             rel='stylesheet'
           ></link>
           <meta name='emotion-insertion-point' content='' />
