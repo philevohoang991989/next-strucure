@@ -1,5 +1,5 @@
 import Logo from "@/assets/icons/logo.svg";
-import { useAuth } from "@/hooks";
+import { useAuth, useTrans } from "@/hooks";
 import { ItemMenu } from "@/models";
 import { Container, Stack } from "@mui/material";
 import Button from "@mui/material/Button";
@@ -13,22 +13,42 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
-import { ROUTE_LIST } from "./routes";
 import styles from "./styles.module.scss";
 
+
+
 export function HeaderDesktop() {
+  const router = useRouter();
+  const {locale} = useRouter()
+  const trans = useTrans();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const ROUTE_LIST: any = [
+    {
+      label: `${trans.menu.home}`,
+      path: '/'
+    },
+  
+    {
+      label: `${trans.menu.about}`,
+      path: '/about'
+    },
+    {
+      label: `${trans.menu.blog}`,
+      path: '/blog'
+    }
+  ]
   const { logout, profile } = useAuth();
   const [language, setLanguage] = React.useState<string | null>("en");
-  const router = useRouter();
+  const [listRouter, setListRouter] = useState<ItemMenu[]>();
 
   const changeLang = (lang: any) => {
     router.push("", "", { locale: lang });
   };
-  const [listRouter, setListRouter] = useState<ItemMenu[]>();
 
   useEffect(() => {
     setListRouter(ROUTE_LIST);
-  }, []);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [locale]);
   useEffect(() => {
     router.locale && setLanguage(router.locale);
   }, [router]);
