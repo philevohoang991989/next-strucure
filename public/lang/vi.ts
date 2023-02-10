@@ -1,5 +1,10 @@
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
+    menu:{
+        home:"Trang chủ",
+        about:'Giới thiệu',
+        blog:'Tin tức'
+    },
     home: {
         title: 'Chào mừng tới Viblo!',
         content: 'Bắt đầu một bài viết nào',
