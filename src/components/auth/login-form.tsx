@@ -1,6 +1,7 @@
+import HidePassWord from '@/assets/icons/hide-password.png';
+import ShowPassword from '@/assets/icons/show-password.png';
 import { LoginPayload } from "@/models";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Visibility, VisibilityOff } from "@mui/icons-material";
 import {
   Button,
   CircularProgress,
@@ -8,6 +9,7 @@ import {
   InputAdornment
 } from "@mui/material";
 import { Box } from "@mui/system";
+import Image from "next/image";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
@@ -67,7 +69,7 @@ export function LoginForm({ onSubmit }: LoginFormProps) {
                 onClick={() => setShowPassword((x) => !x)}
                 edge="end"
               >
-                {showPassword ? <VisibilityOff /> : <Visibility />}
+                {showPassword ? <Image src={HidePassWord} alt='icon hide'/> : <Image src={ShowPassword} alt='icon show'/>}
               </IconButton>
             </InputAdornment>
           ),
