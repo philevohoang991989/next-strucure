@@ -6,19 +6,19 @@ import { LoginPayload } from '@/models'
 import { Paper, Typography } from '@mui/material'
 import { Box } from '@mui/system'
 import { useRouter } from 'next/router'
-import { transform } from 'typescript'
+
+import {authApi} from '@/api-client'
+
 
 export interface LoginPageProps {}
 
 export default function LoginPage(props: LoginPageProps) {
   const router = useRouter()
-  const { login } = useAuth({
-    revalidateOnMount: false
-  })
+  
 
   async function handleLoginSubmit(payload: LoginPayload) {
     try {
-      await login(payload)
+      await authApi.login(payload)
       router.push('/')
     } catch (error) {
       console.log('failed to login', error)
